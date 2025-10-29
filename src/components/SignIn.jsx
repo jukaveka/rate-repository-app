@@ -3,8 +3,9 @@ import { TextInput } from "react-native";
 
 import { useFormik } from "formik";
 
-import Text from "./Text";
 import theme from "../theme";
+
+import Text from "./Text";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,8 +29,9 @@ const styles = StyleSheet.create({
   field: {
     marginVertical: 10,
     width: 250,
-    borderWidth: 2,
     padding: 5,
+    borderWidth: 1,
+    borderRadius: 5,
     borderColor: theme.colors.primary,
   },
   button: {
@@ -42,15 +44,15 @@ const initialValues = {
   password: "",
 };
 
+const onSubmit = (values) => {
+  console.log(values);
+};
+
 const SignIn = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
   });
-
-  const onSubmit = (values) => {
-    console.log(values);
-  };
 
   return (
     <View style={styles.container}>
@@ -80,7 +82,7 @@ const SignIn = () => {
           <Button
             title="Sign in"
             color={theme.colors.highlight}
-            onPress={() => onSubmit(formik.values)}
+            onPress={formik.handleSubmit}
           />
         </View>
       </View>
