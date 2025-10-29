@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
   fontSizeCaption: {
     fontSize: theme.fontSizes.caption,
   },
+  fontSizeHeading: {
+    fontSize: theme.fontSizes.heading,
+  },
   fontWeightBold: {
     fontWeight: theme.fontWeights.bold,
   },
@@ -40,6 +43,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     color === "textLight" && styles.colorTextLight,
     fontSize === "subheading" && styles.fontSizeSubheading,
     fontSize === "caption" && styles.fontSizeCaption,
+    fontSize === "heading" && styles.fontSizeHeading,
     fontWeight === "bold" && styles.fontWeightBold,
     style,
   ];
