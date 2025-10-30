@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 const Chip = ({ value }) => {
   return (
     <View style={styles.container}>
-      <Text fontWeight="bold" color="textLight">
+      <Text fontWeight="bold" color="light">
         {value}
       </Text>
     </View>

@@ -3,6 +3,8 @@ import { TextInput } from "react-native";
 
 import { useFormik } from "formik";
 
+import * as yup from "yup";
+
 import theme from "../theme";
 
 import Text from "./Text";
@@ -23,11 +25,16 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   label: {
-    marginVertical: 10,
+    marginTop: 20,
+    width: 200,
+  },
+  error: {
+    margintop: 5,
+    marginBottom: 10,
     width: 200,
   },
   field: {
-    marginVertical: 10,
+    marginTop: 5,
     width: 250,
     padding: 5,
     borderWidth: 1,
@@ -48,9 +55,21 @@ const onSubmit = (values) => {
   console.log(values);
 };
 
+const validationSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(3, "Username needs to be at least 3 characters long")
+    .required("Username is required"),
+  password: yup
+    .string()
+    .min(8, "Password needs to be at least 8 characters long")
+    .required("Password is required"),
+});
+
 const SignIn = () => {
   const formik = useFormik({
     initialValues,
+    validationSchema,
     onSubmit,
   });
 
@@ -67,23 +86,40 @@ const SignIn = () => {
           placeholder="matti.meikalainen@gmail.com"
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
+          onBlur={formik.handleBlur("username")}
         />
+        {formik.touched.username && formik.errors.username && (
+          <Text style={styles.error} color="error">
+            {formik.errors.username}
+          </Text>
+        )}
 
         <Text style={styles.label}> Password </Text>
         <TextInput
           style={styles.field}
           placeholder="abcd1234"
           secureTextEntry
+          error
           value={formik.values.password}
           onChangeText={formik.handleChange("password")}
+          onBlur={formik.handleBlur("password")}
         />
+        {formik.touched.password && formik.errors.password && (
+          <Text style={styles.error} color="error">
+            {formik.errors.password}
+          </Text>
+        )}
 
         <View style={styles.button}>
-          <Button
-            title="Sign in"
-            color={theme.colors.highlight}
-            onPress={formik.handleSubmit}
-          />
+          {formik.isValid ? (
+            <Button
+              title="Sign in"
+              color={theme.colors.highlight}
+              onPress={formik.handleSubmit}
+            />
+          ) : (
+            <Button title="Sign in" disabled color={theme.colors.highlight} />
+          )}
         </View>
       </View>
     </View>

@@ -5,8 +5,6 @@ import theme from "../theme";
 
 const styles = StyleSheet.create({
   item: {
-    fontSize: theme.fontSizes.subheading,
-    color: theme.colors.textLight,
     paddingBottom: 20,
     paddingStart: 10,
   },
@@ -17,7 +15,9 @@ const AppBarTab = ({ label, route }) => {
     <>
       <Pressable>
         <Link to={route}>
-          <Text style={styles.item}> {label} </Text>
+          <Text style={styles.item} color="light" fontSize="subheading">
+            {label}
+          </Text>
         </Link>
       </Pressable>
     </>
