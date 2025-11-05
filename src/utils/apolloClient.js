@@ -1,6 +1,7 @@
 import Constants from "expo-constants";
-import { HttpLink } from "@apollo/client";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 const env = Constants.expoConfig.extra.env;
 let apolloUri;
@@ -14,11 +15,33 @@ if (env === "development") {
   apolloUri = apolloUriBase.replace("placeholder", ipAddress);
 }
 
-export const createApolloClient = () => {
+const httpLink = new HttpLink({
+  uri: apolloUri,
+});
+
+export const createApolloClient = (authStorage) => {
+  const authLink = setContext(async (_, { headers }) => {
+    try {
+      const accessToken = await authStorage.getAccessToken();
+
+      return {
+        ...headers,
+        authorization: accessToken ? `Bearer ${accessToken}` : "",
+      };
+    } catch (error) {
+      console.log(
+        "Error faced while checking fetching access token error",
+        error
+      );
+
+      return {
+        headers,
+      };
+    }
+  });
+
   return new ApolloClient({
-    link: new HttpLink({
-      uri: apolloUri,
-    }),
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
 };

@@ -14,12 +14,6 @@ class AuthStorage {
   }
 
   async setAccessToken(accessToken) {
-    const existingToken = await this.getAccessToken();
-
-    if (existingToken) {
-      await this.removeAccessToken();
-    }
-
     await AsyncStorage.setItem(
       `${this.namespace}:accessToken`,
       JSON.stringify(accessToken)
