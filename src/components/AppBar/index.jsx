@@ -4,11 +4,11 @@ import { useQuery } from "@apollo/client/react";
 
 import Constants from "expo-constants";
 
-import { CURRENT_USER } from "../graphql/queries/authenticationQueries";
+import { CURRENT_USER } from "../../graphql/queries/authenticationQueries";
 
 import AppBarTab from "./AppBarTab";
 
-import theme from "../theme";
+import theme from "../../theme";
 
 const styles = StyleSheet.create({
   container: {
