@@ -1,6 +1,6 @@
 import { FlatList, View, StyleSheet, TouchableHighlight } from "react-native";
 
-import RepositoryItem from "./RepositoryItem";
+import RepositoryItem from "../RepositoryItem";
 
 const styles = StyleSheet.create({
   separator: {
