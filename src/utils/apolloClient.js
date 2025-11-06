@@ -7,12 +7,7 @@ const env = Constants.expoConfig.extra.env;
 let apolloUri;
 
 if (env === "development") {
-  const portSeparatorIndex = Constants.expoConfig.hostUri.indexOf(":");
-  const ipAddress = Constants.expoConfig.hostUri.slice(0, portSeparatorIndex);
-
-  const apolloUriBase = Constants.expoConfig.extra.apolloUriDev;
-
-  apolloUri = apolloUriBase.replace("placeholder", ipAddress);
+  apolloUri = Constants.expoConfig.extra.apolloUriDev;
 }
 
 const httpLink = new HttpLink({
