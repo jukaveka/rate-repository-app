@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
-import Text from "./Text";
-import theme from "../theme";
-import Chip from "./Chip";
+import Text from "../../Text";
+import theme from "../../../theme";
+import Chip from "../../Chip";
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,5 @@
 import { FlatList, View, StyleSheet, TouchableHighlight } from "react-native";
 
-import useReporitories from "../hooks/useRepositories";
-
 import RepositoryItem from "./RepositoryItem";
 
 const styles = StyleSheet.create({
@@ -12,9 +10,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryList = () => {
-  const { repositories } = useReporitories();
-
+const RepositoryListContainer = ({ repositories }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
@@ -32,4 +28,4 @@ const RepositoryList = () => {
   );
 };
 
-export default RepositoryList;
+export default RepositoryListContainer;
