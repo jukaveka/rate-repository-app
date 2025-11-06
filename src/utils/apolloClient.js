@@ -25,12 +25,14 @@ export const createApolloClient = (authStorage) => {
       const accessToken = await authStorage.getAccessToken();
 
       return {
-        ...headers,
-        authorization: accessToken ? `Bearer ${accessToken}` : "",
+        headers: {
+          ...headers,
+          authorization: accessToken ? `Bearer ${accessToken}` : "",
+        },
       };
     } catch (error) {
       console.log(
-        "Error faced while checking fetching access token error",
+        "Error faced while adding access token to request headers",
         error
       );
 
