@@ -6,8 +6,6 @@ import {
   Pressable,
 } from "react-native";
 
-import { useNavigate } from "react-router-native";
-
 import RepositoryItem from "../RepositoryItem";
 
 const styles = StyleSheet.create({
@@ -18,13 +16,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({ repositories }) => {
-  const navigate = useNavigate();
-
-  const handlePress = (id) => {
-    navigate(`/${id}`);
-  };
-
+const RepositoryListContainer = ({ repositories, handlePress }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];
