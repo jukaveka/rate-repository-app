@@ -1,7 +1,9 @@
 import { StyleSheet, View } from "react-native";
+
 import RepositoryItemDetails from "./RepositoryItemDetails";
 import RepositoryItemLogo from "./RepositoryItemLogo";
 import RepositoryItemStats from "./RepositoryItemStats";
+import RepositoryItemLink from "./RepositoryItemLink";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,11 +20,16 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({ item }) => {
+  const itemHasUrl = () => {
+    return item.url !== undefined;
+  };
+
   return (
     <View testID="repositoryItem" style={styles.container}>
       <RepositoryItemLogo imageUrl={item.ownerAvatarUrl} />
       <RepositoryItemDetails item={item} />
       <RepositoryItemStats item={item} />
+      {itemHasUrl() ? <RepositoryItemLink url={item.url} /> : null}
     </View>
   );
 };
