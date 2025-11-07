@@ -6,9 +6,9 @@ const theme = {
     textError: "#CC444B",
     primary: "#84A98C",
     secondary: "#E2E8DD",
-    highlight: "#004643",
+    highlight: "#3D5467",
     background: "#ECECEC",
-    button: "#3D5467",
+    button: "#4A8FE7",
   },
   fontSizes: {
     caption: 11,

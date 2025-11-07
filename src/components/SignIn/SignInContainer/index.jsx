@@ -109,7 +109,7 @@ const SignInContainer = ({ onSubmit }) => {
           {formik.isValid ? (
             <Button
               title="Sign in"
-              color={theme.colors.highlight}
+              color={theme.colors.button}
               onPress={formik.handleSubmit}
             />
           ) : (
