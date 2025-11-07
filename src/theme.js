@@ -5,9 +5,10 @@ const theme = {
     textLight: "#FCFCF8",
     textError: "#CC444B",
     primary: "#84A98C",
-    secondary: "#CAD2C5",
-    highlight: "#618B6A",
+    secondary: "#E2E8DD",
+    highlight: "#004643",
     background: "#ECECEC",
+    button: "#3D5467",
   },
   fontSizes: {
     caption: 11,
