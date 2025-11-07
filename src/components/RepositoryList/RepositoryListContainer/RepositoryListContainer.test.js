@@ -63,88 +63,60 @@ describe("RepositoryList", () => {
 
       expect(firstRepository).toHaveTextContent(
         firstRepositoryTestData.fullName,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(firstRepository).toHaveTextContent(
         firstRepositoryTestData.description,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(firstRepository).toHaveTextContent(
         firstRepositoryTestData.language,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(firstRepository).toHaveTextContent(
         `${firstRepositoryTestData.stargazersCount}Stars`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(firstRepository).toHaveTextContent(
         `${firstRepositoryTestData.forksCount}Forks`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(firstRepository).toHaveTextContent(
         `${firstRepositoryTestData.reviewCount}Reviews`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(firstRepository).toHaveTextContent(
         `${firstRepositoryTestData.ratingAverage}Rating`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
 
       expect(secondRepository).toHaveTextContent(
         secondRepositoryTestData.fullName,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(secondRepository).toHaveTextContent(
         secondRepositoryTestData.description,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(secondRepository).toHaveTextContent(
         secondRepositoryTestData.language,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(secondRepository).toHaveTextContent(
         `${secondRepositoryTestData.stargazersCount}Stars`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(secondRepository).toHaveTextContent(
         `${secondRepositoryTestData.forksCount}Forks`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(secondRepository).toHaveTextContent(
         `${secondRepositoryTestData.reviewCount}Reviews`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
       expect(secondRepository).toHaveTextContent(
         `${secondRepositoryTestData.ratingAverage}Rating`,
-        {
-          exact: false,
-        }
+        { exact: false }
       );
     });
   });
