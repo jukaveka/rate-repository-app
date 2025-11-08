@@ -9,6 +9,11 @@ const theme = {
     highlight: "#3D5467",
     background: "#ECECEC",
     button: "#4A8FE7",
+    ratingGreat: "#178B58",
+    ratingGood: "#25DC8C",
+    ratingOkay: "#FDE74C",
+    ratingBad: "#FC8D4C",
+    ratingHorrible: "#D72323",
   },
   fontSizes: {
     caption: 11,
