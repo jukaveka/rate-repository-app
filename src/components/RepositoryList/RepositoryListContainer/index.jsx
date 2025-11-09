@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  View,
-  StyleSheet,
-  TouchableHighlight,
-  Pressable,
-} from "react-native";
+import { FlatList, TouchableHighlight, Pressable } from "react-native";
 
 import RepositoryItem from "../RepositoryItem";
 import ItemSeparator from "../../ItemSeparator";

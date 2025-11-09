@@ -13,9 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 20,
     marginHorizontal: 10,
-  },
-  item: {
-    margin: 20,
+    marginTop: "2.5%",
   },
 });
 
