@@ -1,4 +1,5 @@
-import { FlatList, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useParams } from "react-router-native";
 
 import useRepository from "../../../hooks/useRepository";
@@ -6,6 +7,12 @@ import useRepository from "../../../hooks/useRepository";
 import Text from "../../Text";
 import RepositoryItem from "../RepositoryItem";
 import ReviewItem from "./ReviewItem";
+
+const styles = StyleSheet.create({
+  footer: {
+    marginBottom: "10%",
+  },
+});
 
 const RepositoryView = () => {
   const params = useParams();
@@ -26,14 +33,15 @@ const RepositoryView = () => {
 
     console.log(reviewNodes);
     return (
-      <View>
+      <SafeAreaView>
         <FlatList
           data={reviewNodes}
           ListHeaderComponent={<RepositoryItem item={repository} />}
+          ListFooterComponent={<View style={styles.footer}></View>}
           renderItem={({ item }) => <ReviewItem review={item} />}
           keyExtractor={({ id }) => id}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 };
