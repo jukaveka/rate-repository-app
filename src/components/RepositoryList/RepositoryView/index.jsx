@@ -1,17 +1,17 @@
+import { View } from "react-native";
 import { useParams } from "react-router-native";
 
-import useRepository from "../../hooks/useRepository";
+import useRepository from "../../../hooks/useRepository";
 
-import RepositoryItem from "./RepositoryItem";
-import Text from "../Text";
+import Text from "../../Text";
+import RepositoryItem from "../RepositoryItem";
+import ReviewList from "./ReviewList";
 
 const RepositoryView = () => {
   const params = useParams();
   const repositoryId = params.id;
 
   const { repository, loading, error } = useRepository(repositoryId);
-
-  console.log(repository, loading, error);
 
   if (loading) {
     return <Text> Loading repository </Text>;
@@ -22,7 +22,12 @@ const RepositoryView = () => {
   }
 
   if (repository) {
-    return <RepositoryItem item={repository} />;
+    return (
+      <View>
+        <RepositoryItem item={repository} />
+        <ReviewList reviews={repository.reviews} />
+      </View>
+    );
   }
 };
 
