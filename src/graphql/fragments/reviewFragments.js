@@ -6,5 +6,9 @@ export const REVIEW_FRAGMENT = gql`
     createdAt
     rating
     text
+    user {
+      id
+      username
+    }
   }
 `;
