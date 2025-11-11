@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Button, Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import * as yup from "yup";
 import Text from "../Text";
 import theme from "../../theme";
@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     borderColor: "gray",
   },
+  error: {
+    alignSelf: "flex-start",
+    marginStart: "5%",
+  },
   button: {
     backgroundColor: theme.colors.button,
     padding: 10,
@@ -39,27 +43,27 @@ const styles = StyleSheet.create({
 const initialValues = {
   repositoryOwner: "",
   repositoryName: "",
-  reviewRating: 50,
+  reviewRating: "",
   reviewText: "",
 };
 
 const validationSchema = yup.object().shape({
   repositoryOwner: yup
     .string("Repository owner must be string")
-    .required("Repository owner is required for submission"),
+    .required("Repository owner is required"),
   repositoryName: yup
     .string("Repository name must be string")
-    .required("Repository name is required for submission"),
+    .required("Repository name is required"),
   reviewRating: yup
     .number("Rating must be a number between 0 and 100")
-    .min(0, "Rating can not be number below 0")
-    .max(100, "Rating can not be number above 100")
-    .required("Rating is required for submission"),
+    .min(0, "Rating can not be a number below 0")
+    .max(100, "Rating can not be a number above 100")
+    .required("Rating is required"),
   reviewText: yup.string().optional(),
 });
 
 const ReviewFormContainer = ({ onSubmit }) => {
-  const formik = useFormik({ initialValues, onSubmit });
+  const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
   return (
     <View style={styles.container}>
@@ -68,38 +72,56 @@ const ReviewFormContainer = ({ onSubmit }) => {
       </Text>
       <TextInput
         style={styles.field}
-        placeholder="Name of the repository you want to review"
+        placeholder="Repository name"
         value={formik.repositoryName}
+        onBlur={formik.handleBlur("repositoryName")}
         onChangeText={formik.handleChange("repositoryName")}
       />
+      {formik.touched.repositoryName && formik.errors.repositoryName && (
+        <Text style={styles.error} color="error">
+          {formik.errors.repositoryName}
+        </Text>
+      )}
 
       <Text style={styles.label} fontWeight="subheading">
         Owner
       </Text>
       <TextInput
         style={styles.field}
-        placeholder="GitHub account of the repository owner"
+        placeholder="Repository owner"
         value={formik.repositoryOwner}
+        onBlur={formik.handleBlur("repositoryOwner")}
         onChangeText={formik.handleChange("repositoryOwner")}
       />
+      {formik.touched.repositoryOwner && formik.errors.repositoryOwner && (
+        <Text style={styles.error} color="error">
+          {formik.errors.repositoryOwner}
+        </Text>
+      )}
 
       <Text style={styles.label} fontWeight="subheading">
         Rating
       </Text>
       <TextInput
         style={styles.field}
-        placeholder="Rating you'd give to this repository?"
+        placeholder="Your rating (between 0 and 100)"
         value={formik.reviewRating}
+        onBlur={formik.handleBlur("reviewRating")}
         onChangeText={formik.handleChange("reviewRating")}
       />
+      {formik.touched.reviewRating && formik.errors.reviewRating && (
+        <Text style={styles.error} color="error">
+          {formik.errors.reviewRating}
+        </Text>
+      )}
 
       <Text style={styles.label} fontWeight="subheading">
         Review
       </Text>
       <TextInput
         style={styles.field}
-        placeholder="Write a review on why you've chosen the rating above."
-        value={formik.repositoryName}
+        placeholder="Describe your reason behind the given rating and use cases"
+        value={formik.reviewText}
         multiline
         numberOfLines={5}
         onChangeText={formik.handleChange("reviewText")}

@@ -30,14 +30,14 @@ const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
-        <AppBarTab label="Repositories" route="/" />
+        <AppBarTab key="repositories-tab" label="Repositories" route="/" />
         {currentUser ? (
           [
-            <AppBarTab label="Add review" route="/review" />,
-            <AppBarTab label="Sign out" route="/signout" />,
+            <AppBarTab key="review-tab" label="Add review" route="/review" />,
+            <AppBarTab key="sign-out-tab" label="Sign out" route="/signout" />,
           ]
         ) : (
-          <AppBarTab label="Sign in" route="/signin" />
+          <AppBarTab key="sign-in-tab" label="Sign in" route="/signin" />
         )}
       </ScrollView>
     </View>
