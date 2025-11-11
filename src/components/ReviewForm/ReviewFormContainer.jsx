@@ -67,7 +67,9 @@ const ReviewFormContainer = ({ onSubmit }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label} fontWeight="subheading">
+      <Text fontSize="heading">Create repository review</Text>
+
+      <Text style={styles.label} fontSize="subheading">
         Repository
       </Text>
       <TextInput
@@ -83,7 +85,7 @@ const ReviewFormContainer = ({ onSubmit }) => {
         </Text>
       )}
 
-      <Text style={styles.label} fontWeight="subheading">
+      <Text style={styles.label} fontSize="subheading">
         Owner
       </Text>
       <TextInput
@@ -99,7 +101,7 @@ const ReviewFormContainer = ({ onSubmit }) => {
         </Text>
       )}
 
-      <Text style={styles.label} fontWeight="subheading">
+      <Text style={styles.label} fontSize="subheading">
         Rating
       </Text>
       <TextInput
@@ -115,7 +117,7 @@ const ReviewFormContainer = ({ onSubmit }) => {
         </Text>
       )}
 
-      <Text style={styles.label} fontWeight="subheading">
+      <Text style={styles.label} fontSize="subheading">
         Review
       </Text>
       <TextInput
