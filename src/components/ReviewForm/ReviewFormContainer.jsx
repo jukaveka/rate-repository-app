@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 const initialValues = {
   repositoryOwner: "",
   repositoryName: "",
-  reviewRating: "",
+  reviewRating: 0,
   reviewText: "",
 };
 
