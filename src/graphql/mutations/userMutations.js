@@ -7,3 +7,12 @@ export const AUTHENTICATE_USER = gql`
     }
   }
 `;
+
+export const CREATE_USER = gql`
+  mutation createUser($user: CreateUserInput) {
+    createUser(user: $user) {
+      id
+      username
+    }
+  }
+`;

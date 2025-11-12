@@ -30,39 +30,78 @@ const validationSchema = yup.object().shape({
   passwordConfirmation: yup
     .string()
     .oneOf([yup.ref("password"), null])
-    .required("Password is required"),
+    .required("Password confirmation is required"),
 });
 
 const SignUpContainer = ({ onSubmit }) => {
-  const formik = useFormik(initialValues, validationSchema);
+  const formik = useFormik({ initialValues, validationSchema, onSubmit });
 
   return (
     <View style={styles.container}>
       <Text fontSize="heading">Sign up</Text>
-
       <Text style={styles.label} fontSize="subheading">
         Username
       </Text>
-      <TextInput style={styles.field} />
-
+      <TextInput
+        style={styles.field}
+        placeholder="username"
+        value={formik.values.username}
+        onChangeText={formik.handleChange("username")}
+        onBlur={formik.handleBlur("username")}
+      />
+      {formik.touched.username && formik.errors.username && (
+        <Text style={styles.error} color="error">
+          {formik.errors.username}
+        </Text>
+      )}
       <Text style={styles.label} fontSize="subheading">
         Password
       </Text>
-      <TextInput style={styles.field} />
+      <TextInput
+        style={styles.field}
+        placeholder="abcd1234"
+        secureTextEntry
+        value={formik.values.password}
+        onChangeText={formik.handleChange("password")}
+        onBlur={formik.handleBlur("password")}
+      />
+      {formik.touched.password && formik.errors.password && (
+        <Text style={styles.error} color="error">
+          {formik.errors.password}
+        </Text>
+      )}
 
       <Text style={styles.label} fontSize="subheading">
         Confirm your password
       </Text>
-      <TextInput style={styles.field} />
+      <TextInput
+        style={styles.field}
+        placeholder="abcd1234"
+        secureTextEntry
+        value={formik.values.passwordConfirmation}
+        onChangeText={formik.handleChange("passwordConfirmation")}
+        onBlur={formik.handleBlur("passwordConfirmation")}
+      />
+      {formik.touched.passwordConfirmation &&
+        formik.errors.passwordConfirmation && (
+          <Text style={styles.error} color="error">
+            {formik.errors.passwordConfirmation}
+          </Text>
+        )}
 
-      <Pressable
-        style={styles.button.valid}
-        onPress={() => console.log("Pressed")}
-      >
-        <Text color="light" fontWeight="bold" fontSize="subheading">
-          Submit
-        </Text>
-      </Pressable>
+      {formik.isValid ? (
+        <Pressable style={styles.button.valid} onPress={formik.handleSubmit}>
+          <Text color="light" fontWeight="bold" fontSize="subheading">
+            Sign in
+          </Text>
+        </Pressable>
+      ) : (
+        <Pressable style={styles.button.disabled} disabled>
+          <Text color="textPrimary" fontWeight="bold" fontSize="subheading">
+            Sign in
+          </Text>
+        </Pressable>
+      )}
     </View>
   );
 };
