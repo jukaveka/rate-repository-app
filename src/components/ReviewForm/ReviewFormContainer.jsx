@@ -4,41 +4,7 @@ import * as yup from "yup";
 import Text from "../Text";
 import theme from "../../theme";
 
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    width: "90%",
-    margin: "5%",
-    backgroundColor: "white",
-    padding: "5%",
-    alignItems: "center",
-  },
-  label: {
-    marginTop: "5%",
-    alignSelf: "flex-start",
-    marginStart: "5%",
-  },
-  field: {
-    marginTop: "1%",
-    width: "90%",
-    padding: 5,
-    borderWidth: 1,
-    borderRadius: 2,
-    borderColor: "gray",
-  },
-  error: {
-    alignSelf: "flex-start",
-    marginStart: "5%",
-  },
-  button: {
-    backgroundColor: theme.colors.button,
-    padding: 10,
-    borderRadius: 5,
-    alignItems: "center",
-    width: "90%",
-    marginVertical: "5%",
-  },
-});
+const styles = StyleSheet.create(theme.forms);
 
 const initialValues = {
   repositoryOwner: "",
@@ -129,7 +95,7 @@ const ReviewFormContainer = ({ onSubmit }) => {
         onChangeText={formik.handleChange("reviewText")}
       />
 
-      <Pressable style={styles.button} onPress={formik.handleSubmit}>
+      <Pressable style={styles.button.valid} onPress={formik.handleSubmit}>
         <Text color="light" fontWeight="bold" fontSize="subheading">
           Submit
         </Text>
