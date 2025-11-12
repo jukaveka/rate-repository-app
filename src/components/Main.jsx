@@ -7,6 +7,7 @@ import RepositoryList from "./RepositoryList";
 import RepositoryView from "./RepositoryList/RepositoryView";
 import ReviewForm from "./ReviewForm";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 import SignOut from "./SignOut";
 
 import theme from "../theme";
@@ -28,6 +29,7 @@ const Main = () => {
         <Route path="/:id" element={<RepositoryView />} />
         <Route path="/review" element={<ReviewForm />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
