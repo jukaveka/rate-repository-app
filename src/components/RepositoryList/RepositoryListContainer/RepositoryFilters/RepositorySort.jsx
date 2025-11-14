@@ -1,6 +1,12 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button, Menu } from "react-native-paper";
+
+const styles = StyleSheet.create({
+  button: {
+    fontSize: 25,
+  },
+});
 
 const filterOptions = [
   {
@@ -41,7 +47,9 @@ const RepositorySort = ({ setSortBy }) => {
       <Menu
         visible={visible}
         onDismiss={handleClose}
-        anchor={<Button icon="sort" onPress={handleOpen} />}
+        anchor={
+          <Button icon="sort" onPress={handleOpen} labelStyle={styles.button} />
+        }
       >
         {filterOptions.map((option) => {
           return (
