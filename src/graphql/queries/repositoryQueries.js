@@ -4,8 +4,11 @@ import { REPOSITORY_FRAGMENT } from "../fragments/repositoryFragments";
 import { REVIEW_FRAGMENT } from "../fragments/reviewFragments";
 
 export const GET_REPOSITORIES = gql`
-  query {
-    repositories {
+  query getRepositories(
+    $orderBy: AllRepositoriesOrderBy
+    $orderDirection: OrderDirection
+  ) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
       edges {
         node {
           ...repositoryFragment

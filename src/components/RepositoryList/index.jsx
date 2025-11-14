@@ -1,9 +1,17 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-native";
-import useReporitories from "../../hooks/useRepositories";
+
+import useRepositories from "../../hooks/useRepositories";
+
 import RepositoryListContainer from "./RepositoryListContainer";
 
 const RepositoryList = () => {
-  const { repositories } = useReporitories();
+  const [sortBy, setSortBy] = useState({
+    type: "CREATED_AT",
+    direction: "DESC",
+  });
+
+  const { repositories } = useRepositories(sortBy);
 
   const navigate = useNavigate();
 
@@ -15,6 +23,7 @@ const RepositoryList = () => {
     <RepositoryListContainer
       repositories={repositories}
       handlePress={handlePress}
+      setSortBy={setSortBy}
     />
   );
 };
