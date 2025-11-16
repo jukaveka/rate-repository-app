@@ -27,7 +27,7 @@ const ReviewDetails = ({ review }) => {
   return (
     <View style={styles.container}>
       <Text fontSize="subheading">{review.user.username}</Text>
-      <Text> {parsedDate}</Text>
+      <Text>{parsedDate}</Text>
     </View>
   );
 };

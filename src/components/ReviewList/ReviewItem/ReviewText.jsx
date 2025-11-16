@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 const ReviewText = ({ text }) => {
   return (
     <View style={styles.container}>
-      <Text> {text} </Text>
+      <Text>{text}</Text>
     </View>
   );
 };
