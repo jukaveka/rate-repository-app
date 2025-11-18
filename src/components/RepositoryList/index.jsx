@@ -14,7 +14,7 @@ const RepositoryList = () => {
   });
   const [debouncedSearch] = useDebounce(search, 500);
 
-  const { repositories } = useRepositories(sortBy, debouncedSearch);
+  const { repositories, fetchMore } = useRepositories(sortBy, debouncedSearch);
 
   const navigate = useNavigate();
 
@@ -25,6 +25,7 @@ const RepositoryList = () => {
   return (
     <RepositoryListContainer
       repositories={repositories}
+      fetchMore={fetchMore}
       handlePress={handlePress}
       setSortBy={setSortBy}
       search={search}

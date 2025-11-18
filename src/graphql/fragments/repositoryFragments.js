@@ -14,3 +14,11 @@ export const REPOSITORY_FRAGMENT = gql`
     ownerAvatarUrl
   }
 `;
+
+export const PAGINATION_FRAGMENT = gql`
+  fragment paginationFragment on PageInfo {
+    startCursor
+    endCursor
+    hasNextPage
+  }
+`;

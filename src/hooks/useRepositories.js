@@ -9,6 +9,8 @@ const useReporitories = (sortBy, search) => {
 
   let variables = {};
 
+  variables.first = 10;
+
   if (sortBy) {
     variables.orderBy = sortBy.type;
     variables.orderDirection = sortBy.direction;
@@ -18,10 +20,28 @@ const useReporitories = (sortBy, search) => {
     variables.searchKeyword = search;
   }
 
-  const { loading, error, data, refetch } = useQuery(GET_REPOSITORIES, {
-    fetchPolicy: "cache-and-network",
-    variables: variables,
-  });
+  const { loading, error, data, refetch, fetchMore } = useQuery(
+    GET_REPOSITORIES,
+    {
+      fetchPolicy: "cache-and-network",
+      variables: variables,
+    }
+  );
+
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+        ...variables,
+      },
+    });
+  };
 
   const handleResult = () => {
     if (data) {
@@ -33,7 +53,7 @@ const useReporitories = (sortBy, search) => {
     handleResult();
   }, [data]);
 
-  return { repositories, loading, error, refetch };
+  return { repositories, loading, error, refetch, fetchMore: handleFetchMore };
 };
 
 export default useReporitories;

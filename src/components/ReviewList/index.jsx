@@ -8,12 +8,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReviewList = ({ reviews, view, refetch, headerComponent }) => {
+const ReviewList = ({ reviews, view, refetch, fetchMore, headerComponent }) => {
+  const onEndReach = () => {
+    if (fetchMore !== undefined) {
+      fetchMore();
+    }
+  };
+
   return (
     <FlatList
       data={reviews}
       ListHeaderComponent={headerComponent}
       ListFooterComponent={<View style={styles.footer} />}
+      onEndReached={onEndReach}
       renderItem={({ item }) => (
         <ReviewItem review={item} view={view} refetch={refetch} />
       )}

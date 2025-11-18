@@ -18,7 +18,7 @@ const RepositoryView = () => {
   const params = useParams();
   const repositoryId = params.id;
 
-  const { repository, loading, error } = useRepository(repositoryId);
+  const { repository, loading, error, fetchMore } = useRepository(repositoryId);
 
   if (loading) {
     return <Text> Loading repository </Text>;
@@ -31,12 +31,12 @@ const RepositoryView = () => {
   if (repository) {
     const reviewNodes = repository.reviews.edges.map((edge) => edge.node);
 
-    console.log(reviewNodes);
     return (
       <SafeAreaView>
         <ReviewList
           reviews={reviewNodes}
           view="repository"
+          fetchMore={fetchMore}
           headerComponent={<RepositoryItem item={repository} />}
         />
       </SafeAreaView>

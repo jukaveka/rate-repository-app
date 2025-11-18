@@ -6,6 +6,7 @@ import RepositoryFilters from "./RepositoryFilters";
 
 const RepositoryListContainer = ({
   repositories,
+  fetchMore,
   handlePress,
   setSortBy,
   search,
@@ -15,10 +16,15 @@ const RepositoryListContainer = ({
     ? repositories.edges.map((edge) => edge.node)
     : [];
 
+  const onEndReach = () => {
+    fetchMore();
+  };
+
   return (
     <FlatList
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReach}
       ListHeaderComponent={
         <RepositoryFilters
           setSortBy={setSortBy}

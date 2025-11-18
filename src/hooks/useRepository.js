@@ -7,10 +7,31 @@ import { GET_REPOSITORY } from "../graphql/queries/repositoryQueries";
 const useRepository = (repositoryId) => {
   const [repository, setRepository] = useState();
 
-  const { loading, error, data } = useQuery(GET_REPOSITORY, {
-    variables: { repositoryId },
+  const variables = {
+    repositoryId,
+    first: 5,
+  };
+
+  const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORY, {
+    variables: variables,
     fetchPolicy: "cache-and-network",
   });
+
+  const handleFetchMore = () => {
+    const canFetchMore =
+      !loading && data?.repository.reviews.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    return fetchMore({
+      variables: {
+        after: data?.repository.reviews.pageInfo.endCursor,
+        ...variables,
+      },
+    });
+  };
 
   const handleResult = () => {
     if (data) {
@@ -22,7 +43,7 @@ const useRepository = (repositoryId) => {
     handleResult();
   }, [data]);
 
-  return { repository, loading, error };
+  return { repository, loading, error, fetchMore: handleFetchMore };
 };
 
 export default useRepository;
