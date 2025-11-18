@@ -1,12 +1,11 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 
-import { useQuery } from "@apollo/client/react";
-
 import Constants from "expo-constants";
 
-import { CURRENT_USER } from "../../graphql/queries/authenticationQueries";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 import AppBarTab from "./AppBarTab";
+import Text from "../Text";
 
 import theme from "../../theme";
 
@@ -20,8 +19,24 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
-  const { data } = useQuery(CURRENT_USER);
+  const { data, loading, error } = useCurrentUser();
   let currentUser = undefined;
+
+  if (loading) {
+    return (
+      <View>
+        <Text>Loading app bar options </Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View>
+        <Text>Couldn't load app bar options </Text>
+      </View>
+    );
+  }
 
   if (data) {
     currentUser = data.me;
@@ -34,6 +49,11 @@ const AppBar = () => {
         {currentUser
           ? [
               <AppBarTab key="review-tab" label="Add review" route="/review" />,
+              <AppBarTab
+                key="my-reviews-tab"
+                label="My reviews"
+                route="/reviews"
+              />,
               <AppBarTab
                 key="sign-out-tab"
                 label="Sign out"

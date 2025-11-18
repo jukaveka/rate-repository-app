@@ -36,6 +36,7 @@ const RepositoryView = () => {
       <SafeAreaView>
         <ReviewList
           reviews={reviewNodes}
+          view="repository"
           headerComponent={<RepositoryItem item={repository} />}
         />
       </SafeAreaView>

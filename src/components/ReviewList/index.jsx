@@ -8,13 +8,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReviewList = ({ reviews, headerComponent }) => {
+const ReviewList = ({ reviews, view, refetch, headerComponent }) => {
   return (
     <FlatList
       data={reviews}
       ListHeaderComponent={headerComponent}
       ListFooterComponent={<View style={styles.footer} />}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => (
+        <ReviewItem review={item} view={view} refetch={refetch} />
+      )}
       keyExtractor={({ id }) => id}
     />
   );
